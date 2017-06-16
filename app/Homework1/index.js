@@ -17,14 +17,59 @@ import postData from './postData.js'
      iii. Add a header above the posts with a creative title (style it nicely)
 */
 
-const Homework1 = () => {
-  return (
-    <div>
-    </div>
-  )
+const styles = {
+  post: {
+    width: "90%",
+    background: "#808080",
+    marginLeft: "5%",
+    marginRight: "5%",
+    position: "relative",
+    float: "left",
+    padding: "2em",
+    borderBottomWidth: "5px",
+    borderBottomStyle: "solid" 
+  },
+
+  title: {
+    fontSize: "2em",
+    textAlign: "center"
+  }
+
 }
 
+const Post = ({data}) => (
+  <div>
+    {data.map((val, i) => (
+      <div key={val.id} style={styles.post}>
+        <h1 style={styles.title}>{val.userId}: {val.title}</h1>
+        <p>{val.body}</p>
+      </div>
+    ))}
+  </div>
+)
+
+const SortedPost = ({sortMethod, data}) => {
+  let sortedData = data.sort((a, b) => {
+    if(typeof a[sortMethod] === "string"){
+      console.log(a[sortMethod])
+      return a[sortMethod].localeCompare(b[sortMethod]);
+    } else {
+      return a[sortMethod] - b[sortMethod];
+    }
+  })
+
+  return <Post data={sortedData} />
+}
+
+
+const Homework1 = ({sortMethod}) => (
+  <div>
+    {sortMethod ? <SortedPost sortMethod={sortMethod} data={postData} /> : <Post data={postData} />}
+  </div>
+)
+
 Homework1.propTypes = {
+  sortMethod: PropTypes.oneOf(["title", "body", "userId", "id"])
 }
 
 export default Radium(Homework1)
