@@ -11,5 +11,5 @@ import Example6 from './Example6'
 import Homework1 from './Homework1'
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<Homework1 sortMethod="id" />, document.getElementById('root'))
+  ReactDOM.render(<Homework1 sortMethod="title" />, document.getElementById('root'))
 })

@@ -27,7 +27,8 @@ const styles = {
     float: "left",
     padding: "2em",
     borderBottomWidth: "5px",
-    borderBottomStyle: "solid" 
+    borderBottomStyle: "solid",
+    listStyle: "none"
   },
 
   title: {
@@ -37,34 +38,33 @@ const styles = {
 
 }
 
-const Post = ({data}) => (
-  <div>
+const PostList = ({data}) => (
+  <ul>
     {data.map((val, i) => (
-      <div key={val.id} style={styles.post}>
+      <li key={val.id} style={styles.post}>
         <h1 style={styles.title}>{val.userId}: {val.title}</h1>
         <p>{val.body}</p>
-      </div>
+      </li>
     ))}
-  </div>
+  </ul>
 )
 
-const SortedPost = ({sortMethod, data}) => {
+const SortedPostList = ({sortMethod, data}) => {
   let sortedData = data.sort((a, b) => {
     if(typeof a[sortMethod] === "string"){
-      console.log(a[sortMethod])
       return a[sortMethod].localeCompare(b[sortMethod]);
     } else {
       return a[sortMethod] - b[sortMethod];
     }
   })
 
-  return <Post data={sortedData} />
+  return <PostList data={sortedData} />
 }
 
 
 const Homework1 = ({sortMethod}) => (
   <div>
-    {sortMethod ? <SortedPost sortMethod={sortMethod} data={postData} /> : <Post data={postData} />}
+    {sortMethod ? <SortedPostList sortMethod={sortMethod} data={postData} /> : <PostList data={postData} />}
   </div>
 )
 
