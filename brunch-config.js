@@ -13,7 +13,8 @@ exports.plugins = {
   babel: {
     presets: ['latest', 'react'],
     plugins: [
-      'transform-decorators-legacy'
+      'transform-decorators-legacy',
+      'transform-object-rest-spread'
     ]
   }
 };
