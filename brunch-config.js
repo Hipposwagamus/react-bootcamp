@@ -14,7 +14,13 @@ exports.plugins = {
     presets: ['latest', 'react'],
     plugins: [
       'transform-decorators-legacy',
-      'transform-object-rest-spread'
+      'transform-object-rest-spread',
+       [
+        'transform-runtime',
+        {
+          regenerator: true
+        }
+      ]
     ]
   }
 };
